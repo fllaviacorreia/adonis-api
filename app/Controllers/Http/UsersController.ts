@@ -5,11 +5,14 @@ import ForumsController from './ForumsController'
 import TasksController from './TasksController'
 
 export default class UsersController {
-  public async index() {
+  public async index(ctx: HttpContextContract) {
     try {
-      const users = await Database.query().from('users').select('*')
-      // const user = await User.all
-      return users
+      const user = await ctx.auth.authenticate()
+      if (user.slug === 'administrador') {
+        const users = await Database.query().from('users').select('*')
+        return users
+      }
+      return user
     } catch (error) {
       return 'error'
     }
@@ -17,8 +20,9 @@ export default class UsersController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      const user = await User.find(ctx.params.id) //exclui password
-      if (user) {
+      const user = await ctx.auth.authenticate()
+      if (user.slug === 'administrador' || parseInt(ctx.params.id) === user.id) {
+        let user = await User.find(ctx.params.id) //exclui password
         return user
       }
       return 'not found'
@@ -30,14 +34,21 @@ export default class UsersController {
   //   ao invés desse argumento, pode ser {request}: HttpContextContract
   public async store(ctx: HttpContextContract) {
     try {
-      const newUser = new User()
-      newUser.full_name = ctx.request.input('full_name')
-      newUser.phone_number = ctx.request.input('phone_number')
-      newUser.email = ctx.request.input('email')
-      newUser.password = ctx.request.input('password')
-      newUser.slug = ctx.request.input('slug')
-      await newUser.save()
-      return newUser
+      const user = await ctx.auth.authenticate()
+      if (user.slug === 'administrador') {
+        const newUser = new User()
+        newUser.full_name = ctx.request.input('full_name')
+        newUser.phone_number = ctx.request.input('phone_number')
+        newUser.email = ctx.request.input('email')
+        newUser.password = ctx.request.input('password')
+        newUser.slug = ctx.request.input('slug')
+
+        await newUser.save()
+
+        return newUser
+      }
+
+      return 'not created'
     } catch (error) {
       return 'error'
     }
@@ -52,7 +63,9 @@ export default class UsersController {
         user.email = ctx.request.input('email')
         user.password = ctx.request.input('password')
         user.slug = ctx.request.input('slug')
+
         user.save()
+
         return 'updated'
       }
       return 'not found'

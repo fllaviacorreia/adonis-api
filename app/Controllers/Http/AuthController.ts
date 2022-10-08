@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
-import UsersController from './UsersController'
 
 export default class AuthController {
   public async login(ctx: HttpContextContract) {
@@ -8,25 +7,35 @@ export default class AuthController {
     const password = ctx.request.input('password')
 
     try {
-      const token = await auth.use('api').attemp(email, password, {
+      const token = await ctx.auth.use('api').attempt(email, password, {
         expiresIn: '10 days',
       })
       return token.toJSON()
     } catch (error) {
-      return response.unauthorized('Invalid credentials')
+      return ctx.response.unauthorized('Invalid credentials')
     }
   }
 
   public async register(ctx: HttpContextContract) {
-    const userController = new UsersController()
-    const newUser = userController.createUser(ctx)
+    const newUser = new User()
+    newUser.full_name = ctx.request.input('full_name')
+    newUser.phone_number = ctx.request.input('phone_number')
+    newUser.email = ctx.request.input('email')
+    newUser.password = ctx.request.input('password')
+    newUser.slug = 'leitor'
+
+    await newUser.save()
+
     try {
-      const token = await auth.use('api').login(newUser, {
-        expiresIn: '10 days',
-      })
+      const token = await ctx.auth
+        .use('api')
+        .attempt(ctx.request.input('email'), ctx.request.input('password'), {
+          expiresIn: '10 days',
+        })
+
       return token.toJSON()
     } catch (error) {
-      return response.unauthorized('Invalid credentials')
+      return error.message
     }
   }
 }
