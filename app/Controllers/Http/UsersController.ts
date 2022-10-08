@@ -12,7 +12,7 @@ export default class UsersController {
         const users = await Database.query().from('users').select('*')
         return users
       }
-      return user
+      return 'acess denied'
     } catch (error) {
       return 'error'
     }
@@ -25,7 +25,8 @@ export default class UsersController {
         let user = await User.find(ctx.params.id) //exclui password
         return user
       }
-      return 'not found'
+      //return 'not found'
+      return 'acess denied'
     } catch (error) {
       return 'error'
     }
@@ -48,7 +49,7 @@ export default class UsersController {
         return newUser
       }
 
-      return 'not created'
+      return 'acess denied'
     } catch (error) {
       return 'error'
     }
@@ -56,18 +57,37 @@ export default class UsersController {
 
   public async update(ctx: HttpContextContract) {
     try {
-      const user = await User.find(ctx.params.id)
-      if (user) {
-        user.full_name = ctx.request.input('full_name')
-        user.phone_number = ctx.request.input('phone_number')
-        user.email = ctx.request.input('email')
-        user.password = ctx.request.input('password')
-        user.slug = ctx.request.input('slug')
+      const user = await ctx.auth.authenticate()
+      if (user.slug === 'administrador') {
+        let user = await User.find(ctx.params.id)
+        if (user) {
+          user.full_name = ctx.request.input('full_name')
+          user.phone_number = ctx.request.input('phone_number')
+          user.email = ctx.request.input('email')
+          user.password = ctx.request.input('password')
+          user.slug = ctx.request.input('slug')
 
-        user.save()
+          user.save()
+          return 'updated'
+        }
+      } else {
+        if (user.id === parseInt(ctx.params.id)) {
+          let user = await User.find(ctx.params.id)
+          if (user) {
+            user.full_name = ctx.request.input('full_name')
+            user.phone_number = ctx.request.input('phone_number')
+            user.email = ctx.request.input('email')
+            user.password = ctx.request.input('password')
+            user.slug = ctx.request.input('slug')
 
-        return 'updated'
+            user.save()
+            return 'updated'
+          }
+        } else {
+          return 'acess denied'
+        }
       }
+
       return 'not found'
     } catch (error) {
       return 'error'
@@ -76,11 +96,22 @@ export default class UsersController {
 
   public async destroy(ctx: HttpContextContract) {
     try {
-      const user = await User.query().where('id', ctx.params.id).delete()
-      return user
-      //return response.redirect('/users')
+      const user = await ctx.auth.authenticate()
+      if (user.slug === 'administrador') {
+        const user = await User.query().where('id', ctx.params.id).delete()
+
+        return 'deleted'
+      } else {
+        if (user.id === parseInt(ctx.params.id)) {
+          const user = await User.query().where('id', ctx.params.id).delete()
+
+          return 'deleted'
+        } else {
+          return 'acess denied'
+        }
+      }
     } catch (error) {
-      return 'not found'
+      return 'error'
     }
   }
 
