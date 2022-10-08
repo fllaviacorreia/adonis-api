@@ -17,7 +17,7 @@ export default class Forum extends BaseModel {
   public status: string
 
   @column()
-  public user_id: number
+  public userId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

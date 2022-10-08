@@ -1,20 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
 import Forum from 'App/Models/Forum'
 
 export default class ForumsController {
-  public static index: any
-  public async index(ctx: HttpContextContract) {
+  public async index() {
     try {
-      const user = await ctx.auth.authenticate()
-      if (user.slug === 'administrador') {
-        const forums = await Database.query().from('forums').select('*')
-        return forums
-      }
       const forums = await Forum.query().preload('user').preload('tasks')
       return forums
     } catch (error) {
-      return 'error'
+      return error.message
     }
   }
 
@@ -36,33 +29,59 @@ export default class ForumsController {
   public async store(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
-      const forum = new Forum()
-      if (forum) {
+      if (user) {
+        const forum = new Forum()
         forum.title = ctx.request.input('title')
         forum.description = ctx.request.input('description')
-        forum.status = ctx.request.input('status')
+        forum.status = 'analyzing'
         await user.related('forums').save(forum)
-        return 'created'
+
+        if (forum) {
+          return 'created'
+        }
+        return 'not created'
       }
-      return 'not created'
+      return 'acess denied'
     } catch (error) {
-      return 'error'
+      return error.message
     }
   }
 
   public async update(ctx: HttpContextContract) {
     try {
+      const user = await ctx.auth.authenticate()
       const forum = await Forum.find(ctx.params.id)
-      if (forum) {
-        forum.title = ctx.request.input('title')
-        forum.description = ctx.request.input('description')
-        if (await forum.save()) {
-          await forum.load('user')
-          await forum.load('tasks')
-          return 'updated'
+      if (user.slug === 'administrador') {
+        if (forum) {
+          forum.title = ctx.request.input('title')
+          forum.description = ctx.request.input('description')
+          forum.status = ctx.request.input('status')
+
+          if (await forum.save()) {
+            await forum.load('user')
+            await forum.load('tasks')
+            return 'updated'
+          }
+          return 'not found'
         }
-        return 'not found'
+      } else {
+        if (forum) {
+          if (user.id === forum?.userId) {
+            forum.title = ctx.request.input('title')
+            forum.description = ctx.request.input('description')
+
+            if (await forum.save()) {
+              await forum.load('user')
+              await forum.load('tasks')
+              return 'updated'
+            }
+            return 'not found'
+          }
+        } else {
+          return 'acess denied'
+        }
       }
+      return 'not found'
     } catch (error) {
       return 'error'
     }
@@ -71,13 +90,18 @@ export default class ForumsController {
   public async destroy(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
-      const forum = await Forum.query()
-        .where('user_id', user.id)
-        .where('id', ctx.params.id)
-        .delete()
-      return forum
+      if (user.slug === 'administrador') {
+        const forum = await Forum.query()
+          .where('user_id', user.id)
+          .where('id', ctx.params.id)
+          .delete()
+        // return forum
+        return 'deleted'
+      } else {
+        return 'acess denied'
+      }
     } catch (error) {
-      return 'error'
+      return error.message
     }
   }
 }
