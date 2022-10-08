@@ -29,7 +29,7 @@ Route.group(() => {
   Route.post('/login', 'AuthController.login')
   Route.group(() => {
     //TASKS
-    Route.resource('/tasks', 'PostsController').apiOnly()
+    Route.resource('/tasks', 'TasksController').apiOnly()
 
     //FORUMS
     Route.resource('/forums', 'ForumsController').apiOnly()

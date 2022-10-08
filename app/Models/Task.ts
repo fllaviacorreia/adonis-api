@@ -17,10 +17,10 @@ export default class Task extends BaseModel {
   public status: string
 
   @column()
-  public user_id: number
+  public userId: number
 
   @column()
-  public forum_id: number
+  public forumId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
