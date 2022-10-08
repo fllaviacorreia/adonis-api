@@ -24,9 +24,18 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-//USERS
-Route.post('/users', 'UsersController.createUser')
-Route.get('/users', 'UsersController.showAll')
-Route.get('/users/:id', 'UsersController.showOne')
-Route.put('/users/:id', 'UsersController.editUser')
-Route.delete('/users/:id', 'UsersController.deleteUser')
+Route.group(() => {
+  Route.post('/register', 'AuthController.register')
+  Route.post('/login', 'AuthController.login')
+  Route.group(() => {
+    //TASKS
+    Route.resource('tasks', 'PostsController').apiOnly()
+
+    //FORUMS
+    Route.resource('forums', 'ForumsController').apiOnly()
+
+    //USERS
+    Route.resource('users', 'UsersController')
+    //  Route.resource('users', 'UsersController').apiOnly
+  }).middleware('auth:api')
+}).prefix('api')
