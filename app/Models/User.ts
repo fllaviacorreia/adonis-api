@@ -1,6 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Task from './Task'
+import Forum from './Forum'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -21,11 +23,20 @@ export default class User extends BaseModel {
   @column()
   public slug: string
 
+  @column()
+  public remember_me_token?: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @hasMany(() => Task)
+  public tasks: HasMany<typeof Task>
+
+  @hasMany(() => Forum)
+  public forums: HasMany<typeof Forum>
 
   //criptografar senha
   @beforeSave()
