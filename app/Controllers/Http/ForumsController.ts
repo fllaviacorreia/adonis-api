@@ -3,8 +3,8 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Forum from 'App/Models/Forum'
 
 export default class ForumsController {
-  public static showAll: any
-  public async showAll(ctx: HttpContextContract) {
+  public static index: any
+  public async index(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
       if (user.slug === 'administrador') {
@@ -18,7 +18,7 @@ export default class ForumsController {
     }
   }
 
-  public async showOne(ctx: HttpContextContract) {
+  public async show(ctx: HttpContextContract) {
     try {
       const forum = await Forum.find(ctx.params.id)
       if (forum) {
@@ -33,7 +33,7 @@ export default class ForumsController {
     }
   }
 
-  public async createForum(ctx: HttpContextContract) {
+  public async store(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
       const forum = new Forum()
@@ -50,7 +50,7 @@ export default class ForumsController {
     }
   }
 
-  public async editForum(ctx: HttpContextContract) {
+  public async update(ctx: HttpContextContract) {
     try {
       const forum = await Forum.find(ctx.params.id)
       if (forum) {
@@ -68,7 +68,7 @@ export default class ForumsController {
     }
   }
 
-  public async deleteForum(ctx: HttpContextContract) {
+  public async destroy(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
       const forum = await Forum.query()

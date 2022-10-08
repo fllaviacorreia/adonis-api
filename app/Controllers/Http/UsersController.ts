@@ -5,7 +5,7 @@ import ForumsController from './ForumsController'
 import TasksController from './TasksController'
 
 export default class UsersController {
-  public async showAll() {
+  public async index() {
     try {
       const users = await Database.query().from('users').select('*')
       // const user = await User.all
@@ -15,7 +15,7 @@ export default class UsersController {
     }
   }
 
-  public async showOne(ctx: HttpContextContract) {
+  public async show(ctx: HttpContextContract) {
     try {
       const user = await User.find(ctx.params.id) //exclui password
       if (user) {
@@ -28,7 +28,7 @@ export default class UsersController {
   }
 
   //   ao invés desse argumento, pode ser {request}: HttpContextContract
-  public async createUser(ctx: HttpContextContract) {
+  public async store(ctx: HttpContextContract) {
     try {
       const newUser = new User()
       newUser.full_name = ctx.request.input('full_name')
@@ -43,7 +43,7 @@ export default class UsersController {
     }
   }
 
-  public async editUser(ctx: HttpContextContract) {
+  public async update(ctx: HttpContextContract) {
     try {
       const user = await User.find(ctx.params.id)
       if (user) {
@@ -61,7 +61,7 @@ export default class UsersController {
     }
   }
 
-  public async deleteUser(ctx: HttpContextContract) {
+  public async destroy(ctx: HttpContextContract) {
     try {
       const user = await User.query().where('id', ctx.params.id).delete()
       return user
@@ -72,10 +72,10 @@ export default class UsersController {
   }
 
   public async tasksByUser(ctx: HttpContextContract) {
-    return new TasksController.showAll(ctx)
+    return new TasksController.index(ctx)
   }
 
   public async forumsByUser(ctx: HttpContextContract) {
-    return new ForumsController.showAll(ctx)
+    return new ForumsController.index(ctx)
   }
 }

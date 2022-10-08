@@ -29,13 +29,15 @@ Route.group(() => {
   Route.post('/login', 'AuthController.login')
   Route.group(() => {
     //TASKS
-    Route.resource('tasks', 'PostsController').apiOnly()
+    Route.resource('/tasks', 'PostsController').apiOnly()
 
     //FORUMS
-    Route.resource('forums', 'ForumsController').apiOnly()
+    Route.resource('/forums', 'ForumsController').apiOnly()
 
     //USERS
-    Route.resource('users', 'UsersController')
+    Route.resource('/users', 'UsersController')
+    Route.get('/users/tasks', 'UsersController.tasksByUser')
+    Route.get('/users/forums', 'UsersController.forumsByUser')
     //  Route.resource('users', 'UsersController').apiOnly
   }).middleware('auth:api')
 }).prefix('api')

@@ -3,8 +3,8 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Task from 'App/Models/Task'
 
 export default class TasksController {
-  public static showAll: any
-  public async showAll(ctx: HttpContextContract) {
+  public static index: any
+  public async index(ctx: HttpContextContract) {
     const user = await ctx.auth.authenticate()
     if (user.slug === 'administrador') {
       const tasks = await Database.query().from('tasks').select('*')
@@ -15,7 +15,7 @@ export default class TasksController {
     return tasks
   }
 
-  public async showOne(ctx: HttpContextContract) {
+  public async show(ctx: HttpContextContract) {
     try {
       const task = await Task.find(ctx.params.id)
       if (task) {
@@ -30,7 +30,7 @@ export default class TasksController {
     }
   }
 
-  public async createTask(ctx: HttpContextContract) {
+  public async store(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
       const task = new Task()
@@ -47,7 +47,7 @@ export default class TasksController {
     }
   }
 
-  public async editTask(ctx: HttpContextContract) {
+  public async update(ctx: HttpContextContract) {
     try {
       const task = await Task.find(ctx.params.id)
       if (task) {
@@ -64,7 +64,7 @@ export default class TasksController {
     }
   }
 
-  public async deleteTask(ctx: HttpContextContract) {
+  public async destroy(ctx: HttpContextContract) {
     try {
       const user = await ctx.auth.authenticate()
       const task = await Task.query().where('user_id', user.id).where('id', ctx.params.id).delete()
