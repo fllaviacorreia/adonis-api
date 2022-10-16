@@ -1,0 +1,1086 @@
+{
+	"info": {
+		"_postman_id": "f43cddf4-290d-4432-950a-c1d1306df948",
+		"name": "Collection Adonis API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21749031"
+	},
+	"item": [
+		{
+			"name": "READER",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MTE.xVar0-YSicittZJ2Z_HLrowI3aF1Gb_071Mw3PzDpktt38SwM0pppVXKAVkG",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MTE.xVar0-YSicittZJ2Z_HLrowI3aF1Gb_071Mw3PzDpktt38SwM0pppVXKAVkG",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"leitor@email.com\",\n    \"password\":\"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Leitor 9\",\n    \"phone_number\": \"(73) 9 9999-9999\",\n    \"email\": \"leitor9@email.com\",\n    \"password\": \"123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MTE.xVar0-YSicittZJ2Z_HLrowI3aF1Gb_071Mw3PzDpktt38SwM0pppVXKAVkG",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Leitor 3\",\n    \"phone_number\": \"(73) 9 3333-3333\",\n    \"email\": \"leitor3@email.com\",\n    \"password\": \"12345678\",\n    \"slug\": \"leitor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/users/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MTE.xVar0-YSicittZJ2Z_HLrowI3aF1Gb_071Mw3PzDpktt38SwM0pppVXKAVkG",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"NextJS\",\n    \"description\":\"A new forum with focusing in programming with NextJS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/forums",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Forums",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/forums",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/forums/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"AdonisJS V.1\",\n    \"description\":\"A new forum with focusing in programming with AdonisJS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/forums/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/forums/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"A Task about ReactJS\",\n    \"description\":\"A new task about ReactJS\",\n    \"forum_id\":3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"A Task about NextJS V.1\",\n    \"description\":\"A new task about NextJS\",\n    \"forum_id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/tasks/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/tasks/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/tasks/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"administrador@email.com\",\n    \"password\":\"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Nw.FnyQ-cBvTc9oxa0AzbUTyaZiRG2Jt6bTOQ3nMFLVbEUmdrIisPZfR_30JhhX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Leitor 10\",\n    \"phone_number\": \"(73) 9 1010-1010\",\n    \"email\": \"leitor10@email.com\",\n    \"password\": \"123456789\",\n    \"slug\": \"leitor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Nw.FnyQ-cBvTc9oxa0AzbUTyaZiRG2Jt6bTOQ3nMFLVbEUmdrIisPZfR_30JhhX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Leitor 7\",\n    \"phone_number\": \"(73) 9 7777-7777\",\n    \"email\": \"leitor7@email.com\",\n    \"password\": \"12345678\",\n    \"slug\": \"leitor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/users/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Nw.FnyQ-cBvTc9oxa0AzbUTyaZiRG2Jt6bTOQ3nMFLVbEUmdrIisPZfR_30JhhX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Nw.FnyQ-cBvTc9oxa0AzbUTyaZiRG2Jt6bTOQ3nMFLVbEUmdrIisPZfR_30JhhX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/users/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Nw.FnyQ-cBvTc9oxa0AzbUTyaZiRG2Jt6bTOQ3nMFLVbEUmdrIisPZfR_30JhhX",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/users/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"NestJS\",\n    \"description\":\"A new forum with focusing in programming with NestJS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/forums",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Forums",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/forums",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "MQ.8hqr8s7Po5Mzx_Bs5z0zzaXwibTOgRcgWrWj7Tbdi03ru1-kw_z9QOigRd45",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/forums/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"AdonisJS V.1\",\n    \"description\": \"A new forum with focusing in programming with AdonisJS\",\n    \"status\": \"approved\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/forums/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/forums/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"forums",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"A Task about NestJS\",\n    \"description\":\"A new task about NestJS\",\n    \"forum_id\":3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"A Task about NextJS V.2\",\n    \"description\": \"A new task about NextJS\",\n    \"status\": \"approved\",\n    \"forum_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/api/tasks/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/tasks/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Mg.vVsUtRdwchQSdAYmCZ8VfGwfFaTiAGrAQ8Kdh-t-nyDROt-AW8Xqjmn0rWjx",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/api/tasks/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"api",
+								"tasks",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
